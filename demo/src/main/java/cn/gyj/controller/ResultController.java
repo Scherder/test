@@ -15,9 +15,6 @@ import cn.gyj.util.ResultUtil;
 @RequestMapping("/result")
 public class ResultController {
 
-	@Autowired
-	private ExceptionHandle exceptionHandle;
-	
 	@SuppressWarnings("rawtypes")
 	@RequestMapping("/test/{name}/{pwd}")
 	public Result test(@PathVariable String name, @PathVariable String pwd) throws Exception {

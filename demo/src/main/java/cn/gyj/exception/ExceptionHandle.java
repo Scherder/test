@@ -11,6 +11,7 @@ import cn.gyj.util.ResultUtil;
 @ControllerAdvice
 public class ExceptionHandle {
 
+	@SuppressWarnings("rawtypes")
 	@ExceptionHandler(value = Exception.class)
 	@ResponseBody
 	public Result exceptionGet(Exception e) {
