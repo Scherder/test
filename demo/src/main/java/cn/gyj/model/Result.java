@@ -1,10 +1,18 @@
 package cn.gyj.model;
 
-public class Result<T> {
+public class Result {
 
 	private Integer status;
 	private String message;
-	private T data;
+	private Object data;
+	
+	public Result() {}
+	
+	public Result(Integer status, String message, Object data) {
+		this.status = status;
+		this.message = message;
+		this.data = data;
+	}
 	
 	public Integer getStatus() {
 		return status;
@@ -18,15 +26,11 @@ public class Result<T> {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public T getData() {
+	public Object getData() {
 		return data;
 	}
-	public void setData(T data) {
+	public void setData(Object data) {
 		this.data = data;
-	}
-	@Override
-	public String toString() {
-		return "Result [status=" + status + ", message=" + message + ", data=" + data + "]";
 	}
 	
 }

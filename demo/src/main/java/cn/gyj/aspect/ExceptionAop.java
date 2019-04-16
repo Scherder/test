@@ -7,32 +7,25 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import cn.gyj.exception.ExceptionHandle;
-import cn.gyj.model.Result;
+import cn.gyj.exception.GlobalExceptionHandler;
 
 @Aspect
 @Component
 public class ExceptionAop {
 
 	@Autowired
-	private ExceptionHandle exceptionHandle;
+	private GlobalExceptionHandler globalExceptionHandler;
 	
 	@Pointcut("execution(public * cn.gyj.controller..*.*(..))")
 	public void log() {}
 	
-	@SuppressWarnings({ "rawtypes", "unused" })
 	@Around("log()")
 	public Object aroundLog(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
-		Result result = null;
 		try {
 			
 		}catch(Exception e) {
-			return exceptionHandle.exceptionGet(e);
+			return globalExceptionHandler.handleException(e);
 		}
-		if(result == null) {
-			return proceedingJoinPoint.proceed();
-		}else{
-			return result;
-		}
-	}
+		return proceedingJoinPoint.proceed();
+	}	
 }

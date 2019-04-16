@@ -9,12 +9,11 @@ import cn.gyj.model.Result;
 import cn.gyj.util.ResultUtil;
 
 @ControllerAdvice
-public class ExceptionHandle {
+public class GlobalExceptionHandler {
 
-	@SuppressWarnings("rawtypes")
 	@ExceptionHandler(value = Exception.class)
 	@ResponseBody
-	public Result exceptionGet(Exception e) {
+	public Result handleException(Exception e) {
 		if(e instanceof DescribeException) {
 			DescribeException de = (DescribeException) e;
 			return ResultUtil.error(de.getCode(),de.getMessage());
